@@ -1,0 +1,53 @@
+3.1 Database Objects:
+
+1. CREATE TABLE CUSTOMER_TABLE(CUSTOMERID NUMBER(5), CUST_NAME VARCHAR2(20), ADDRESS1 VARCHAR2(30), ADDRESS2 VARCHAR2(30));
+2. ALTER TABLE CUSTOMER_TABLE RENAME COLUMN CUST_NAME TO CUSTOMER_NAME;
+   ALTER TABLE CUSTOMER_TABLE MODIFY CUSTOMER_NAME VARCHAR2(30) NOT NULL;
+3. ALTER TABLE CUSTOMER_TABLE ADD (GENDER VARCHAR2(1), AGE NUMBER(3), PHONENO NUMBER(10)); 
+4. INSERT INTO CUST_TABLE VALUES(1000, 'Allen','#115 Chicago', '#115 Chicago', 'M', 25, 7878776);
+   INSERT INTO CUST_TABLE VALUES(1001, 'George','#116 France', '#116 France', 'M', 25, 434524);
+   INSERT INTO CUST_TABLE VALUES(1002, 'Becker','#114 New York', '#114 New York', 'M', 45, 431525);
+5. ALTER TABLE CUST_TABLE1 ADD CONSTRAINT CUSTID_PRIM PRIMARY KEY (CUSTOMERID);
+6. INSERT INTO CUST_TABLE1 VALUES(1002,'John', '#114 Chicago', '#114 Chicago', 'M', 45, 439525);
+7. ALTER TABLE CUST_TABLE1 DROP CONSTRAINT CUSTID_PRIM;
+   INSERT INTO CUST_TABLE VALUES(1002, 'Becker','#114 New York', '#114 New York', 'M', 45, 431525);
+   INSERT INTO CUST_TABLE VALUES(1003, 'Nanapatekar','#115 India', '#115 India', 'M', 45, 431525);
+8. ALTER TABLE CUST_TABLE1 ADD CONSTRAINT CUSTID_PRIM PRIMARY KEY (CUSTOMERID);
+
+   Table altered.
+9. ALTER TABLE CUST_TABLE1 DROP CONSTRAINT CUSTID_PRIM;
+   INSERT INTO CUST_TABLE VALUES(1002, 'Becker','#114 New York', '#114 New York', 'M', 45, 431525, 15000.50);
+   INSERT INTO CUST_TABLE VALUES(1003, 'Nanapatekar','#115 India', '#115 India', 'M', 45, 431525);
+10.TRUNCATE TABLE CUST_TABLE1;
+11.ALTER TABLE CUST_TABLE1 ADD EMAIL VARCHAR2(20);
+12.ALTER TABLE CUST_TABLE1 DROP COLUMN EMAIL;
+13.CREATE TABLE SUPPLIERS_TABLE AS (SELECT CUSTOMERID AS SUPPID, CUSTOMERNAME AS SNAME, ADDRESS1 AS ADDR1,
+   ADDRESS2 AS ADDR2, PHONENO AS CONTACTINFO FROM CUST_TABLE);
+14.drop table Suppliers_Table;
+   CREATE TABLE CUSTOMER_MASTER(CUSTOMERID NUMBER(5), CUSTOMERNAME VARCHAR2(30) NOT NULL,ADDRESS1 VARCHAR2(30) NOT NULL,
+   ADDRESS2 VARCHAR2(30), GENDER VARCHAR2(1), AGE NUMBER(3), PHONENO NUMBER(10), CONSTRAINT CUSTID_PK1 PRIMARY KEY (CUSTOMERID));
+15.Create table AccountMaster
+(
+    CustomerID int(5),
+    AccountNumber int(10) Auto_Increment, 
+    AccountType varchar(3),
+    LedgerBalance numeric(10, 2) not null, 
+    constraint Acc_PK primary key(AccountNumber)
+);
+16.alter table accountmaster add constraint Cust_acc foreign key(customerid) references customermaster(customerid);   
+17.insert into cust_table
+values
+    (1000, "Allen", "115 Chicago", "115 Chicago", "M", 25, 7878776);
+insert into cust_table
+values
+    (1001, "George", "116 France", "116 France", "M", 25, 434524);
+insert into cust_table
+values
+    (1002, "Becker", "114 New York", "114 New York", "M", 45, 431525);
+18.alter table accountmaster add CONSTRAINT Account_check check (AccountType='IND' or AccountType='NRI');
+19.alter table accountmaster add constraint Balance_Check check (LedgerBalance > 5000);
+20.
+21.Create table AccountDetails as
+(select *
+from AccountMaster);
+22.
